@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : Bader Eddine Elkhal
+ * @group             : 
+ * @last modified on  : 02-17-2023
+ * @last modified by  : Bader Eddine Elkhal
+**/
 trigger CaseBeforeInsertTrigger on Case (before insert) {
     // WE GET THE CASE FIRST 
     Case r = Trigger.new[0];
