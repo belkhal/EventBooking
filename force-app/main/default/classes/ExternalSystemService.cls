@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-17-2023
+ * @last modified on  : 02-19-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 public  class ExternalSystemService implements Queueable, Database.AllowsCallouts {
@@ -56,30 +56,27 @@ public  class ExternalSystemService implements Queueable, Database.AllowsCallout
     * @return Boolean 
     **/
     public Boolean registerAttendees(String contactDetails){
-            Http http = new Http();
-            HttpRequest request = new HttpRequest();
-            request.setEndpoint(HTTP_ENDPOINT);
-            request.setMethod(HTTP_METHOD);
-            request.setHeader(HTTP_CONTENT_TYPE, HTTP_CONTENT_DATA);
-            // Set the body as a JSON object
-            request.setBody('{"name":"'+ contactDetails  +'"}');
-            HttpResponse response;
-            try{
-                response = http.send(request);
-            }catch(CalloutException e){
-                Logger.error('Error on ' + contactDetails + ' - ' + e.getMessage());
-                return false;
-            }
-            // Parse the JSON response
-            if (response.getStatusCode() != 201) {
-                return false;
-            } else {
-                return true;
-            }
-
-       
-            
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(HTTP_ENDPOINT);
+        request.setMethod(HTTP_METHOD);
+        request.setHeader(HTTP_CONTENT_TYPE, HTTP_CONTENT_DATA);
+        // Set the body as a JSON object
+        request.setBody('{"name":"'+ contactDetails  +'"}');
+        HttpResponse response;
+        try{
+            response = http.send(request);
+        }catch(CalloutException e){
+            Logger.error('Error on ' + contactDetails + ' - ' + e.getMessage());
+            return false;
         }
+        // Parse the JSON response
+        if (response.getStatusCode() != 201) {
+            return false;
+        } else {
+            return true;
+        }  
+    }
 
     /**
     * @description send email to notification to a giving list of contact
