@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-17-2023
+ * @last modified on  : 02-18-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 public with sharing class CaseService {
@@ -15,7 +15,7 @@ public with sharing class CaseService {
     * @author Bader Eddine Elkhal | 02-17-2023 
     * @param case 
     **/
-    public static void validateCases(List<Case> cases, Set<String> accountIds){
+    public static void validateCases(List<Case> cases, Set<Id> accountIds){
         Logger.debug('$$ CaseService - validateCases Start');
         Map<Id, Account> accountByIdMap = AccountSelector.getAccountsById(accountIds);
         for(Case caseRecord : cases){
@@ -41,10 +41,10 @@ public with sharing class CaseService {
     * @description return a set of accountIds for a giving list of cases
     * @author Bader Eddine Elkhal | 02-17-2023 
     * @param cases 
-    * @return Set<String> 
+    * @return Set<Id> 
     **/
-    public static Set<String> getCaseAccountIds(List<Case> cases){
-        Set<String> accountIds = new Set<String>();
+    public static Set<Id> getCaseAccountIds(List<Case> cases){
+        Set<Id> accountIds = new Set<Id>();
         for(Case caseToProcess : cases){
             if(caseToProcess.AccountId != null){
                 accountIds.add(caseToProcess.AccountId);
@@ -60,7 +60,7 @@ public with sharing class CaseService {
     **/
     public static void registerAttendees(List<Case> cases){
         List<Case> closedCases = new List<Case>();
-        Set<String> accountIds;
+        Set<Id> accountIds;
         List<Contact> contacts;
         for(Case caseRecord : cases){
             if(caseRecord.Status.equalsIgnoreCase(CASE_STATUS_CLOSED)){

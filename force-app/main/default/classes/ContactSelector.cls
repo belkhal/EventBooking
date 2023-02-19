@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-17-2023
+ * @last modified on  : 02-18-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 public with sharing class ContactSelector {
@@ -13,7 +13,7 @@ public with sharing class ContactSelector {
     * @param accountIds 
     * @return List<Contact> 
     **/
-    public static List<Contact> getContactsByAccount(Set<String> accountIds){
+    public static List<Contact> getContactsByAccount(Set<Id> accountIds){
         return [SELECT Id, Name, Email, AccountId FROM Contact WHERE AccountId IN : accountIds WITH SECURITY_ENFORCED]; 
     }
 }

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-17-2023
+ * @last modified on  : 02-18-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 public with sharing class CaseTriggerHandler extends TriggerHandler {
@@ -17,7 +17,7 @@ public with sharing class CaseTriggerHandler extends TriggerHandler {
       Logger.debug('$$ CaseTriggerHandler - beforeInsert Start');
       
       //get AccountIds by cases
-      Set<String> accountIds = CaseService.getCaseAccountIds(newCaseList);
+      Set<Id> accountIds = CaseService.getCaseAccountIds(newCaseList);
       //process before insert case validation
       try{
         CaseService.validateCases(newCaseList,accountIds);
