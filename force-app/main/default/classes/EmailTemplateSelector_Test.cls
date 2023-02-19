@@ -2,12 +2,13 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-18-2023
+ * @last modified on  : 02-19-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 @IsTest
 public with sharing class EmailTemplateSelector_Test {
     public static final String EMAIL_TEMPLATE_NAME = 'TestTemplate';
+    public static final String EMAIL_TEMPLATE_TYPE_TEXT = 'text';
     @testSetup 
     static void prepareSetupData() {
         //Insert test User that will run tests
@@ -26,7 +27,7 @@ public with sharing class EmailTemplateSelector_Test {
             'Name'          => EMAIL_TEMPLATE_NAME,
             'DeveloperName' => EMAIL_TEMPLATE_NAME,
             'isActive'      => true,
-            'TemplateType'  => 'text',
+            'TemplateType'  => EMAIL_TEMPLATE_TYPE_TEXT,
             'FolderId'      => user.Id,
             'Subject'       => EMAIL_TEMPLATE_NAME
             });

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-18-2023
+ * @last modified on  : 02-19-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 @IsTest
@@ -43,7 +43,7 @@ public with sharing class AccountSelector_Test {
         
         User user = [SELECT Id, Email, Name FROM User LIMIT 1];
         Test.startTest();
-        Map<Id, Account> returnedAccountsMap = new Map<Id, Account> ();
+        Map<Id, Account> returnedAccountsMap;
         System.runAs(user) {
             returnedAccountsMap = AccountSelector.getAccountsById(new Set<Id>());            
         }
