@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Bader Eddine Elkhal
  * @group             : 
- * @last modified on  : 02-19-2023
+ * @last modified on  : 02-20-2023
  * @last modified by  : Bader Eddine Elkhal
 **/
 public with sharing class CaseTriggerHandler extends TriggerHandler {
@@ -13,20 +13,12 @@ public with sharing class CaseTriggerHandler extends TriggerHandler {
       this.newCaseList = (List<Case>)Trigger.new;
     }
 
-    public override void beforeInsert() {
-      Logger.debug('$$ CaseTriggerHandler - beforeInsert Start');
-      
-      //get AccountIds by cases
-      Set<Id> accountIds = CaseService.getCaseAccountIds(newCaseList);
+    public override void beforeInsert() { 
       //process before insert case validation
-      CaseService.validateCases(newCaseList,accountIds);
-
-      
+      CaseService.validateCases(newCaseList);   
     }
     public override void afterUpdate() {
-        Logger.debug('$$ CaseTriggerHandler - afterUpdate debug Start');
-        
-        CaseService.registerAttendees(newCaseList);
+       CaseService.registerAttendees(newCaseList);
     }
   
 }
